@@ -18,9 +18,14 @@ class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
+      final args = routeData.argsAs<SplashRouteArgs>(
+          orElse: () => const SplashRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SplashScreen(),
+        child: SplashScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -111,14 +116,39 @@ class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [SplashScreen]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute()
-      : super(
+class SplashRoute extends PageRouteInfo<SplashRouteArgs> {
+  SplashRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = splashScreenWidgetModelFactory,
+  }) : super(
           SplashRoute.name,
           path: '/',
+          args: SplashRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
         );
 
   static const String name = 'SplashRoute';
+}
+
+class SplashRouteArgs {
+  const SplashRouteArgs({
+    this.key,
+    this.wmFactory = splashScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'SplashRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

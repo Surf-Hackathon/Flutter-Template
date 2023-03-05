@@ -3,7 +3,7 @@ import 'package:hackathon_template/util/logger/logger.dart';
 import 'package:injectable/injectable.dart';
 
 /// Error handler that print info to console
-@singleton
+@Singleton(as: ErrorHandler)
 class DefaultErrorHandler implements ErrorHandler {
   @override
   void handleError(Object error, {StackTrace? stackTrace}) {
