@@ -24,6 +24,8 @@ dependencies:
   freezed_annotation: ^2.2.0
   logger: ^1.1.0
 
+  flutter_barcode_scanner: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
