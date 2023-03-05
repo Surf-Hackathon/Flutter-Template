@@ -6,7 +6,7 @@ import 'package:hackathon_template/feature/barcode/ui/barcode_info_screen/barcod
 import 'package:hackathon_template/feature/barcode/ui/barcode_scanner_screen/barcode_scanner_screen_export.dart';
 import 'package:hackathon_template/feature/home/ui/home_screen/home_screen_export.dart';
 import 'package:hackathon_template/feature/onboarding/ui/onboarding_screen/onboarding_screen_export.dart';
-import 'package:hackathon_template/feature/splash/splash_screen.dart';
+import 'package:hackathon_template/feature/splash/ui/splash_screen/splash_screen_export.dart';
 import 'package:injectable/injectable.dart';
 
 part 'app_router.gr.dart';
