@@ -11,6 +11,10 @@ class HomeScreen extends ElementaryWidget<IHomeScreenWidgetModel> {
   @override
   Widget build(IHomeScreenWidgetModel wm) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Главная'),
+        centerTitle: true,
+      ),
       body: const SafeArea(
         child: Center(),
       ),

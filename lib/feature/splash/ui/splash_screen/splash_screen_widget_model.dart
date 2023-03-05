@@ -43,9 +43,9 @@ class SplashScreenWidgetModel
     final isFirstOpen = SharedPreferencesHelper.getValue<bool>('isFirstOpen');
 
     if (isFirstOpen ?? true) {
-      context.pushRoute(OnboardingRoute());
+      context.replaceRoute(OnboardingRoute());
     } else {
-      context.pushRoute(HomeRoute());
+      context.replaceRoute(HomeRoute());
     }
   }
 
