@@ -35,11 +35,11 @@ class SplashScreenWidgetModel
 
     Timer(
       const Duration(seconds: 1),
-          () => _navigateToAfterSplashScreen(),
+          () => _navigateToAfterSplashRoute(),
     );
   }
 
-  void _navigateToAfterSplashScreen() {
+  void _navigateToAfterSplashRoute() {
     final isFirstOpen = SharedPreferencesHelper.getValue<bool>('isFirstOpen');
 
     if (isFirstOpen ?? true) {
