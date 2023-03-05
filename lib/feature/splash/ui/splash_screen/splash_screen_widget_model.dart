@@ -10,7 +10,9 @@ import 'package:hackathon_template/navigation/app_router.dart';
 import 'package:hackathon_template/util/shared_preferences/shared_preferences_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-SplashScreenWidgetModel splashScreenWidgetModelFactory(BuildContext context,) {
+SplashScreenWidgetModel splashScreenWidgetModelFactory(
+  BuildContext context,
+) {
   final model = SplashScreenModel(
     errorHandler: getIt.get<ErrorHandler>(),
   );
@@ -35,22 +37,36 @@ class SplashScreenWidgetModel
 
     Timer(
       const Duration(seconds: 1),
-          () => _navigateToAfterSplashScreen(),
+      () => _navigateToAfterSplashRoute(),
     );
   }
 
-  void _navigateToAfterSplashScreen() {
-    final isFirstOpen = SharedPreferencesHelper.getValue<bool>('isFirstOpen');
+  void _navigateToAfterSplashRoute() {
+    final isFirstOpen = SharedPreferencesHelper.getValue<bool>(
+          'isFirstOpen',
+        ) ??
+        true;
 
-    if (isFirstOpen ?? true) {
+    if (isFirstOpen) {
       context.replaceRoute(OnboardingRoute());
     } else {
       context.replaceRoute(HomeRoute());
     }
   }
 
-  Future<void> _requestCameraPermission() async{
-    await Permission.camera.request();
+  Future<void> _requestCameraPermission() async {
+    final isCameraPermissionWasRequested =
+        SharedPreferencesHelper.getValue<bool>(
+              'isCameraPermissionWasRequested',
+            ) ??
+            false;
+    if (!isCameraPermissionWasRequested) {
+      await Permission.camera.request();
+      await SharedPreferencesHelper.setValue(
+        'isCameraPermissionWasRequested',
+        true,
+      );
+    }
   }
 }
 

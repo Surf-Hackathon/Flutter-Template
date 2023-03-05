@@ -25,20 +25,24 @@ class HomeScreen extends ElementaryWidget<IHomeScreenWidgetModel> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'СКАНИРОВАТЬ ШТРИХКОД С ПОМОЩЬЮ КАМЕРЫ',
-                    textAlign: TextAlign.center,
+                  onPressed: wm.openScannerWithPermissionCheck,
+                  child: const Center(
+                    child: Text(
+                      'СКАНИРОВАТЬ ШТРИХКОД С ПОМОЩЬЮ КАМЕРЫ',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'ВВЕСТИ ШТРИХКОД ВРУЧНУЮ',
-                    textAlign: TextAlign.center,
+                  onPressed: wm.openBarcodeEnterScreen,
+                  child: const Center(
+                    child: Text(
+                      'ВВЕСТИ ШТРИХКОД ВРУЧНУЮ',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ],
