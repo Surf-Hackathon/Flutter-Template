@@ -97,6 +97,9 @@ class OnboardingScreenWidgetModel
     context.replaceRoute(
       HomeRoute(),
     );
+
+    /// Указывем флаг того что пользователь уже был в приложении
+    SharedPreferencesHelper.setValue('isFirstOpen', false);
   }
 
   @override
