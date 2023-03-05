@@ -10,9 +10,7 @@ import 'package:hackathon_template/navigation/app_router.dart';
 import 'package:hackathon_template/util/shared_preferences/shared_preferences_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-SplashScreenWidgetModel splashScreenWidgetModelFactory(
-  BuildContext context,
-) {
+SplashScreenWidgetModel splashScreenWidgetModelFactory(BuildContext context,) {
   final model = SplashScreenModel(
     errorHandler: getIt.get<ErrorHandler>(),
   );
@@ -33,20 +31,26 @@ class SplashScreenWidgetModel
   void initWidgetModel() {
     super.initWidgetModel();
 
+    _requestCameraPermission();
+
     Timer(
       const Duration(seconds: 1),
-          () => context.pushRoute(OnboardingRoute()),
+          () => _navigateToAfterSplashScreen(),
     );
   }
 
-  void navigateToAfterSplashScreen() {
+  void _navigateToAfterSplashScreen() {
     final isFirstOpen = SharedPreferencesHelper.getValue<bool>('isFirstOpen');
 
-    if(isFirstOpen ?? true) {
+    if (isFirstOpen ?? true) {
       context.pushRoute(OnboardingRoute());
     } else {
       context.pushRoute(HomeRoute());
     }
+  }
+
+  Future<void> _requestCameraPermission() async{
+    await Permission.camera.request();
   }
 }
 
