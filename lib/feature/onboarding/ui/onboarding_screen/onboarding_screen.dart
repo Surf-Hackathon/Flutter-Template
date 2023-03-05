@@ -11,8 +11,68 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
   @override
   Widget build(IOnboardingScreenWidgetModel wm) {
     return Scaffold(
-      body: const SafeArea(
-        child: Center(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.close,
+              size: 32,
+            ),
+            tooltip: 'Закрыть онбординг',
+            onPressed: wm.cancelOnboarding,
+          ),
+        ],
+      ),
+      body: Stack(
+        children: [
+          PageView.builder(
+            controller: wm.pageController,
+            itemCount: wm.pageCount,
+            itemBuilder: (_, i) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Card(
+                    elevation: 6.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: SizedBox(
+                      height: 300,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            wm.onboardingPagesContent[i],
+                            style: const TextStyle(fontSize: 32),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          Positioned(
+            bottom: 24,
+            left: 24,
+            right: 24,
+            child: ElevatedButton(
+              onPressed: wm.onPressed,
+              child: StateNotifierBuilder<String>(
+                listenableState: wm.pageState,
+                builder: (
+                  BuildContext context,
+                  String? userName,
+                ) {
+                  return Text(userName ?? 'Далее');
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
