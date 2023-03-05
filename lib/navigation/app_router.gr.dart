@@ -34,6 +34,17 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    OnboardingRoute.name: (routeData) {
+      final args = routeData.argsAs<OnboardingRouteArgs>(
+          orElse: () => const OnboardingRouteArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: OnboardingScreen(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     BarcodeScannerRoute.name: (routeData) {
       final args = routeData.argsAs<BarcodeScannerRouteArgs>(
           orElse: () => const BarcodeScannerRouteArgs());
@@ -78,6 +89,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           HomeRoute.name,
           path: '/home-screen',
+        ),
+        RouteConfig(
+          OnboardingRoute.name,
+          path: '/onboarding-screen',
         ),
         RouteConfig(
           BarcodeScannerRoute.name,
@@ -140,6 +155,43 @@ class HomeRouteArgs {
   @override
   String toString() {
     return 'HomeRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRoute extends PageRouteInfo<OnboardingRouteArgs> {
+  OnboardingRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = onboardingScreenWidgetModelFactory,
+  }) : super(
+          OnboardingRoute.name,
+          path: '/onboarding-screen',
+          args: OnboardingRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+        );
+
+  static const String name = 'OnboardingRoute';
+}
+
+class OnboardingRouteArgs {
+  const OnboardingRouteArgs({
+    this.key,
+    this.wmFactory = onboardingScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'OnboardingRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
