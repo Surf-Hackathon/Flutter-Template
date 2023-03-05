@@ -15,8 +15,36 @@ class HomeScreen extends ElementaryWidget<IHomeScreenWidgetModel> {
         title: const Text('Главная'),
         centerTitle: true,
       ),
-      body: const SafeArea(
-        child: Center(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'СКАНИРОВАТЬ ШТРИХКОД С ПОМОЩЬЮ КАМЕРЫ',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'ВВЕСТИ ШТРИХКОД ВРУЧНУЮ',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

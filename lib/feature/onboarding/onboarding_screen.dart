@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_template/feature/barcode/scanner_menu_screen.dart';
+import 'package:hackathon_template/navigation/app_router.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -47,9 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 final currPage = pageController.page!.toInt() + 1;
                 final pagesCount = onboardingPages.length;
                 if (currPage == pagesCount) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const ScannerMenuScreen()),
-                  );
+                  context.replaceRoute(HomeRoute());
                   return;
                 }
                 pageController.nextPage(
